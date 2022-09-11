@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "com.example.proto.product";
+
+import "product.proto";
+
+service ProductService {
+  rpc ReserveOrderedProducts(ReserveOrderedProductsRequest) returns (ProductList) {}
+}
+
+message ReserveOrderedProductsRequest {
+  repeated OrderProduct products = 1;
+  uint64 user_id = 2;
+}
+
+message OrderProduct {
+  uint64 product_id = 1;
+  uint32 quantity = 2;
+}
+
+message ProductList {
+  repeated Product products = 1;
+}
