@@ -1,7 +1,18 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+plugins {
+	kotlin("jvm") version "1.6.21" apply false
+	id("org.springframework.boot") version "2.7.4"
+	id("io.spring.dependency-management") version "1.0.14.RELEASE"
+	id("com.google.protobuf") version "0.8.19" apply false
+}
+
 repositories {
 	mavenCentral()
+}
+
+dependencies {
+	platform(project(":shared:platform"))
 }
 
 buildscript {
@@ -19,17 +30,6 @@ buildscript {
 		set("protobufVersion", "3.19.1")
 		set("grpcVersion", "1.46.0")
 	}
-}
-
-plugins {
-	kotlin("jvm") version "1.6.21" apply false
-	id("org.springframework.boot") version "2.7.3"
-	id("io.spring.dependency-management") version "1.0.13.RELEASE"
-	id("com.google.protobuf") version "0.8.19" apply false
-}
-
-dependencies {
-	platform(project(":shared:platform"))
 }
 
 subprojects {
